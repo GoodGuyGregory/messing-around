@@ -21,12 +21,13 @@ let users = [{
 
 let userData = [];
 
-
+console.log(" ");
 console.log('Get User Names:');
 console.log('================');
 for (let i = 0; i < users.length; i++) {
   console.log(users[i].username);
 }
+console.log(" ");
 console.log('ForEach User Name:');
 console.log('==================');
 
@@ -43,7 +44,7 @@ console.log("");
 console.log("Combined User Data in single Array of separate Objects by language");
 console.log("==================================================");
 for (let i = 0; i < userData.length; i++) {
-  console.log(userData[i]);
+  // console.log(userData[i]);
 }
 
 console.log(" ");
@@ -78,13 +79,13 @@ test.getKeyByValue(42);  // returns 'key1'
 
 // Vanilla JS to return the objet's keys:
 console.log(Object.keys(test));
-
+console.log(" ");
 console.log("Keys from the Users Object:");
 console.log("=============================");
 
 console.log(Object.keys(users[1].languages));
 let usersLangData = Object.keys(users[1].languages);
-
+console.log(" ");
 //  Combine the properties:
 console.log("Creates an Array of Objects with each Language:");
 console.log("===============================================");
@@ -98,7 +99,7 @@ usersLangData.forEach(element => {
   console.log(JSON.stringify(languageArgs));
   LanguageData.push(languageArgs);
 })
-
+console.log(" ");
 // Checking contents of userLangData:
 console.log("Elements inside of LanguageData");
 console.log("=====================================");
@@ -110,24 +111,22 @@ console.log(" ");
 console.log("Combine User language values with args:");
 console.log("=========================================");
 
-
-for (let i = 0; i < LanguageData.length; i++) {
-  const element = LanguageData[i].arg;
-  console.log(element);
-}
+// Testing:
+// for (let i = 0; i < LanguageData.length; i++) {
+//   const element = LanguageData[i].arg;
+//   // console.log(element);
+// }
 
 users.forEach(user => {
   for (let lang in user.languages) {
     for (let i = 0; i < LanguageData.length; i++) {
-      // console.log(i);
-      console.log(LanguageData[i].arg);
       if (lang == LanguageData[i].arg) {
         LanguageData[i][user.username] = user.languages[lang];
       }
     }
   }
 });
-
+console.log(" ");
 console.log("Contents of LanguageData:");
 console.log("============================");
 LanguageData.forEach(element => {
