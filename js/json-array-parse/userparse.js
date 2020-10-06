@@ -39,19 +39,14 @@ users.forEach(user => {
     userData.push(userItems);
   }
 });
-
+console.log("");
+console.log("Combined User Data in single Array of separate Objects by language");
+console.log("==================================================");
 for (let i = 0; i < userData.length; i++) {
   console.log(userData[i]);
 }
 
-console.log("Combines User Data where the Language Args Match:");
-console.log("==================================================");
-// for (let lang in user.languages) {
-//   let userItems = {
-//     arg: lang
-//   }
-// }
-
+console.log(" ");
 // GETTING KEYS WITH VALUES:
 console.log("Accessing Keys of Objects:");
 console.log("==============================");
@@ -90,21 +85,51 @@ console.log("=============================");
 console.log(Object.keys(users[1].languages));
 let usersLangData = Object.keys(users[1].languages);
 
+//  Combine the properties:
+console.log("Creates an Array of Objects with each Language:");
+console.log("===============================================");
+let LanguageData = [];
 usersLangData.forEach(element => {
-  console.log("Getting Elements...");
-  console.log(element);
+  // console.log("Getting Elements...");
+  // console.log(element);
   let languageArgs = {};
-  console.log(`appending ${element} to their own object`);
-  languageArgs["args"] = element;
+  // console.log(`appending ${element} to their own object`);
+  languageArgs["arg"] = element;
   console.log(JSON.stringify(languageArgs));
+  LanguageData.push(languageArgs);
 })
 
-// let userLangs = users.map(languages => {
-//   let languageArgs = {};
-//   languages = Object.keys(users[1].languages);
-//   languageArgs["args"] = languages;
-//   usersLangData.push(userLangs);
-//   return userLangs;
-// });
+// Checking contents of userLangData:
+console.log("Elements inside of LanguageData");
+console.log("=====================================");
+LanguageData.forEach(lang => {
+  console.log(lang.arg);
+});
+console.log(" ");
+// Combine UserData where the arg matches the language preference:
+console.log("Combine User language values with args:");
+console.log("=========================================");
 
 
+for (let i = 0; i < LanguageData.length; i++) {
+  const element = LanguageData[i].arg;
+  console.log(element);
+}
+
+users.forEach(user => {
+  for (let lang in user.languages) {
+    for (let i = 0; i < LanguageData.length; i++) {
+      // console.log(i);
+      console.log(LanguageData[i].arg);
+      if (lang == LanguageData[i].arg) {
+        LanguageData[i][user.username] = user.languages[lang];
+      }
+    }
+  }
+});
+
+console.log("Contents of LanguageData:");
+console.log("============================");
+LanguageData.forEach(element => {
+  console.log(element);
+});
